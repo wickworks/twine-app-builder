@@ -86,7 +86,7 @@ jobs:
       - name: Build the app
         working-directory: ./app
         env:
-          APP_NAME: My Twine game
+          APP_NAME: Aesthetic
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
           WINDOWS_PFX_FILE: ${{ steps.write_file.outputs.filePath }}
@@ -127,7 +127,7 @@ jobs:
       # The next two steps are identical, except for explicitly passing in the tag name in the latter
       # I wish I knew how to do this in a more elegant way.
       # See also: I'd love to abstract out the startsWith() check and generated tag name into variable
-      
+
       - name: Release on GitHub (Built via Tag)
         uses: softprops/action-gh-release@v1
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
@@ -140,8 +140,8 @@ jobs:
             app/out/**/*Setup.exe
             app/out/**/*.rpm
             app/out/**/*.zip
-            
-      
+
+
       - name: Release on GitHub (Automated Tag)
         uses: softprops/action-gh-release@v1
         if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
